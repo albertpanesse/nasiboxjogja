@@ -1,4 +1,8 @@
-var bgCars = ['bg-carousel2.png', 'bg-carousel3.png'];
+/*
+* Situs Panesse <situs.ok@gmail.com>
+* https://bio.site/situspanesse
+*/
+var bgCars = ['bg-carousel2.jpg', 'bg-carousel3.jpg'];
 var bgCarIdx = 0;
 
 function changeBackground() {
@@ -17,25 +21,22 @@ function changeBackground() {
   }, 1000)
 }
 
-setInterval(changeBackground, 15000);
+setInterval(changeBackground, 5000);
 
-// Function to find elements causing horizontal overflow
-function findOverflowingElements() {
-  const bodyWidth = document.body.clientWidth;
-  const elements = document.body.getElementsByTagName('*');
-  const overflowingElements = [];
+window.onscroll = function() {
+  scrollFunction();
+};
 
-  for (let i = 0; i < elements.length; i++) {
-      const element = elements[i];
-      const rect = element.getBoundingClientRect();
-      if (rect.right > bodyWidth || rect.left < 0) {
-          overflowingElements.push(element);
-      }
+function scrollFunction() {
+  const backToTopButton = document.getElementById("backToTop");
+  if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+      backToTopButton.style.display = "block";
+  } else {
+      backToTopButton.style.display = "none";
   }
-
-  return overflowingElements;
 }
 
-// Log the elements causing horizontal overflow
-const overflowingElements = findOverflowingElements();
-console.log('Elements causing horizontal overflow:', overflowingElements);
+function scrollToTop() {
+  document.body.scrollTop = 0;
+  document.documentElement.scrollTop = 0;
+}
